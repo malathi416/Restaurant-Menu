@@ -1,39 +1,21 @@
 package restaurant;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class MenuItem {
-    private Integer id;
-    private String name;
     private double price ;
     private String description;
     private String category;
-    private Date lastUpdateDate;
+    private boolean isNew;
 
-    public MenuItem(Integer id, String name,  String description, String category,double price, Date lastUpdateDate){
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public MenuItem(double price,String description, String category){
         this.price = price;
+        this.description = description;
         this.category = category;
-        this.lastUpdateDate = lastUpdateDate;
+        this.isNew = true;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     public double getPrice(){
         return price;
     }
@@ -53,23 +35,35 @@ public class MenuItem {
         this.category = category;
     }
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
+    public boolean isNew() {
+        return isNew;
     }
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
+    public void setNew(boolean aNew) {
+        isNew = aNew;
     }
 
     @Override
     public String toString() {
         return "MenuItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
+                "price=" + price +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
-                ", lastUpdateDate=" + lastUpdateDate +
+                ", isNew=" + isNew +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Objects.equals(description, menuItem.description) &&
+                Objects.equals(category, menuItem.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, category);
     }
 }
