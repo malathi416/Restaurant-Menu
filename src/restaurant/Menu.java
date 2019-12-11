@@ -8,7 +8,7 @@ public class Menu {
     private Date lastUpdated;
 
     public Menu(){
-        this.items = new ArrayList<>();
+        this.items = new ArrayList<MenuItem>();
         this.lastUpdated = new Date();
     }
     public void addItem(MenuItem aItem) {
